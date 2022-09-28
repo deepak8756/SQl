@@ -1,0 +1,56 @@
+use DeepakDB;
+
+1. primary key bna rha hu orders ko
+
+create table orders
+(
+order_id int primary key,
+ordernumber int,
+location varchar (255)
+);
+
+2.foreign key bna rha hu jisse order id meeh primary key bnaya hai ussi ko foreign key bnaunga persons table meeh
+			data type bhi same hona chahiye
+create table persons
+(
+personid int,
+personname varchar(255),
+order_id int,
+foreign key(order_id) references orders(order_id)
+);
+
+3.abb maine bna diya ek table ko pimary key(orders meeh order_id ko)  aur foreign key(persons meeh order_id ko)
+
+
+//insert krlo orders meeh jisse primary key bnaya hai
+
+insert into orders(order_id,ordernumber,location)
+values(10,123456,"delhi");
+
+insert into orders(order_id,ordernumber,location)
+values(20,7891234,"kolkata");
+insert into orders(order_id,ordernumber,location)
+values(30,453343,"bihar");
+
+Select * from orders;
+
+
+abb persons wali table meeh insert kr rhe hai foreign key wala table
+
+insert into persons(personid,personname,order_id)
+values(1,"deepak",10);
+
+insert into persons(personid,personname,order_id)
+values(1,"satyam",40);
+
+insert into persons(personid,personname,order_id)
+values(1,"satyam",10);
+
+insert into persons(personid,personname,order_id)
+values(2,"akshat",20);
+
+
+insert into persons(personid,personname,order_id)
+values(4,"amit",30);
+
+select * from persons;
