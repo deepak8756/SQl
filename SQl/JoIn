@@ -1,0 +1,73 @@
+1 table bna rhe hai yha par
+
+
+create table persons(
+p_id int,
+firstname varchar(255),
+lastname varchar(255),
+Address varchar(255),
+city varchar(255)
+);
+
+insert into persons(p_id,firstname,lastname,Address,city)
+values(1,"Deepak","Singh","Stree 12","Allahabad");
+
+insert into persons(p_id,firstname,lastname,Address,city)
+values(2,"Amit","Dubey","Green 17","Bihar");
+
+insert into persons(p_id,firstname,lastname,Address,city)
+values(3,"Suyash","Singh","Stree 10","Mumbai");
+
+select * from persons;
+
+
+-----------------------------------
+abb ek aur table bna rhe hai orderss ke naam see
+
+create table orders
+(
+o_id int,
+order_no int,
+p_id int
+);
+
+insert into orders(o_id,order_no,p_id)
+values(1,23452,3);
+
+insert into orders(o_id,order_no,p_id)
+values(1,12345,3);
+
+
+insert into orders(o_id,order_no,p_id)
+values(1,87654,1);
+insert into orders(o_id,order_no,p_id)
+values(1,903657,1);
+insert into orders(o_id,order_no,p_id)
+values(1,982353,10);
+
+select * from orders;
+select * from persons;
+
+..dono table baan gai
+--------------------------------------
+
+//INNER JOIN/JOIN  join the two table which is common in both the table
+select orders.p_id,persons.firstname,persons.lastname,orders.order_no from persons 
+inner join orders on persons.p_id= orders.p_id;
+select * from orders;
+select * from persons;
+
+
+
+// Left join it returns all records from left table but only matching record from rght table
+select orders.p_id,persons.firstname,persons.lastname,orders.order_no from persons 
+left join orders on persons.p_id= orders.p_id;
+select * from orders;
+select * from persons;
+
+// right join it returns all records from right table but only matching record from left table
+select orders.p_id,persons.firstname,persons.lastname,orders.order_no from persons 
+Right join orders on persons.p_id= orders.p_id;
+select * from orders;
+select * from persons;
+
