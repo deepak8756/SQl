@@ -1,0 +1,350 @@
+1->Table create kaise krte hai
+-----------------------------------------------------------------------------------
+create table DeepakDB.Hello   //DeepakDB database ka naam aur 
+(							//Aur Hello table ka naam
+	PersonID int,
+    firstName varchar(255),
+    lastname varchar(255),
+    city varchar(255),
+    salary int
+);
+
+-----------------------------------------------------------------------------------------
+2-> Table meeh insert kr rha hai
+insert into DeepakDB.Hello(personid,firstname,lastname,city,salary)
+Values(1,"Deepak","Singh","Allahabad",3000);
+
+ //person id upar capital yha insert meeh small diye koi koi problem //nhi hai small de skte hai
+abb isi queries see table meeh data insert krte jao
+-------------------------------------------------------------------------------------------
+APni bnai hui table dekh skte hai isse
+3->  SELECT * FROM DeepakDB.Hello;
+//database ka naam DeepakDB 
+tabe ka naam Hello
+-------------------------------------------------------------------------------------------
+4->  AND ka use OR ka use whi same c wala concept
+
+and ke liye query dono true hoga tabhi chlega
+select * from DeepakDB.Hello where firstName="Abhi" AND lastname="Dubey";
+
+//select kro wo table DeepakDb databse ka naam table hello usme see jha pehla naam abhi ho aur sath hi sath last name dubey ho
+
+------------
+or ke liye query koi ek true ho jae bass
+
+select * from DeepakDB.Hello where firstname="Deepak" OR lastname="Dubey";
+
+isme ye deepak wala bhi dedega aur jinka last name dubey ho ga wo wala bhi dedega yhi upar walee meeh likhoge to dono match krna chahiye tabhi dega output 
+--------------------------------------------------------------------------------------
+5-> Where clause agar kuch dhundna ho table meeh to
+
+select * from DeepakDB.Hello where personid=3;
+
+jinki jinki person id 3 hogi unhe dedega
+//aisse hi kuch b dhundlo table meeh see table naam likho where krke aur jo chahiye ho wo likhe  JAISE YE EL AUR DEKHO :- 
+
+select * from DeepakDB.Hello where firstname="Abhi";
+
+jo jo abhi naam ke honge sabko dedega
+
+
+-------------------------------------------------------------------------------------------
+6-> Order by
+
+ye data ko ascending ya descending order meeh dikhata hai.
+agar sirf order by likh diye to by default ascending meeh lga dega
+otherwise likho agar descending meeh chahhiye to desc ye likho
+
+//chotte see bdee order meeh lga dega
+select * from DeepakDB.hello order by salary;
+
+//bdde see chotee order meeh lga dega
+select * from DeepakDB.hello order by salary desc;
+
+-------------------------------------------------------------------------------------------
+7-> Distinct Statement:- 
+agrar koi colums meeh data repeat hai hme ek baar dekhna hai to ye distinct use krenge 
+select distinct(firstname) from DeepakDB.Hello;
+//first name column meeh chahe ek no kitni baar repeat hua ho but
+ye uss naam ko ek hi baar dikhaega.
+---------
+
+select distinct(salary) from DeepakDB.Hello;
+
+koi salary ko repeat nhi dihaega ek baar sirf
+-------------------------------------------------------------------------------------------
+
+8->Delete Statement:-
+
+agar where likhna bhool gae to sab delete ho jaega isliye where jrur likhna nhi to puri table khali ho jaegi 
+
+delete from DeepakDB.Hello where firstname="Abhi";
+
+Abhi delete ho gya hoga jitti bhi baar aya hoga table name koi bhi keyword aisse leke delet kr skte hai salary lelo where salary=45000;
+usse salry wale row ko hi pura dleete krdega
+
+-------------------------------------------------------------------------------------------
+
+IMPORTANT AGAR QUERY MEEH YE LIKH DE
+
+use DeepakDB;
+
+to ab iske badd see koi bhi query likho koi bhi jaisi bhi ho from use krlo tab DeepakDB.hello likhne ki jrurat nhi
+
+Ex :- use DeepakDB likhne see pehle agar table dekhna hai to ye likhte hai na
+select * from DeepakDB.Hello;
+
+abb use DeepakDB; likh diya
+to abb agar table dekhna hai to sirf ye likho
+select * from Hello;
+-------------------------------------------------------------------------------------------
+9-> Date and time
+
+select now(),curdate(),curtime();
+
+ye abhi ka current data btaega 
+time btaega current
+aur select new(); aaj ka sab kuch btaega date fir time
+-------------------------------------------------------------------------------------------
+
+ 	TOPIC:-		FUNCTIONS:-
+			-------------------------------
+
+average:-
+select avg(salary) from Hello;
+
+average btadega salary wale row see
+-----------------------------
+
+Sum:-
+select sum(salary) from Hello;
+salary wale column ko pura add krke btadega
+-----------------------------------------------------
+uppercase:- 
+firstname wala column hai manlo sabko uppercase meeh dekhna chahta hu meeh to ye likho:-
+select ucase(firstname) from Hello;
+
+saree naam firstname wali column see uppercase meeh aenge capital letters meeh
+---------------------------
+lowercase:-
+firstname wala column hai manlo sabko lowercase meeh dekhna chahta hu meeh to ye likho:-
+select lcase(firstname) from Hello;
+
+saree naam firstname wali column see lowercase meeh aenge small letters meeh
+-------------------------------------
+
+maximum chahiye:-
+manlo maximum saalry btaan hai maximum wale column see 
+select max(salary) from Hello;
+
+------------------------------------------
+minimum chahiye:-
+manlo minimum saalry btaan hai maximum wale column see 
+select min(salary) from Hello;
+--------------------------------------------
+substr:- 
+select lastname,substr(firstname,1,2) from Hello;
+flastname pura aega aur firstname wale meeh see pehle character see dusre character taak bass
+1.singh  De
+2.verma An
+3.singh Am
+4.sharma Ak
+---------------------------------END-----------------------------------------------
+-------------------------------------------------------------------------------------------
+10->  Group by Statement
+select customer,sum(orderprice) from orders group by customer;
+john kaffi baar aya hai table meeh to uska total order sum btao 
+
+------------------------------------------
+11 Having mtlb:- 
+
+select customer,sum(orderprice) from orders 
+group by customer having sum(orderprice)>2000;
+
+
+-----------------------------------------------------------------
+
+12 -> ALTER:- 
+
+->new column add krna ho existing table meeh to
+alter table orders add location varchar(255);
+
+->agar koi column delete krna ho to ye
+ alter table orders drop column location;
+
+---------------------------------------------------------------------------
+
+13-> ALIAS:-
+agar koi column ka naam change krna hai manlo koi columns ka naam customer hai aur mujhe krna hai customer_name  
+select customer as customer_name from orders;
+
+-------------------------------------------------------------------------------
+
+14 DROP:-
+drop table orders;
+puri table hi delete krdega kuch nhi bchega naam taak nhi bchega uss table ki wo exist bhi krti thi 
+Database bhi delete krdega ye drop DeepakDB;
+delte krdega database
+-------------------------------------------------------------------------
+15:- Between operator :-
+doo values ke beech meeh agar hmee data chahiye to including begin and end value to ye clause use kro between
+ select * from orders where orderprice between 1000 and 1500;
+wo order dikhaega jo 1000 see start hue honge aur 1500 taak ke honge
+------------------------------------------------------------------------------
+16-> In operator:-
+agar kinhi 2 logo ka data dekhna hai to in ka use kro 
+select * from orders where customer in("john","brown");
+jo data bracket ke andar likhoge wo data dekhne ko milega 
+john aur brown ka data dikha rha hoga
+# o_id	orderprice	customer
+1	1200	john
+2	1500	brown
+3	300	john
+5	1000	john
+-----------------------------------
+select orderprice from orders where customer in("john","brown");
+ye sirf proce dikhaega
+-----------------------------------------------------------------------------
+
+17-> Sql like operator
+a% ->iska mtlb person ka naam a see start hona chahiye'
+select * from orders where customer like "j%";
+j naam see  jitne honge sab ajaenge 
+-----------------------------
+%a->iska mtlb person ka naam a see end hona chahiye
+select * from orders where customer like "%n";
+jinke naam ke last meeh n hoga wo sabka data dega
+---------------------------
+%or%-> iska mtlb in between khi ye hoga agar to dedega
+select * from orders where customer like "%ow%";
+jinke naam kee beech meeh ow hoga wo wo ajaenge
+brown hai ek uska data ajaega
+---------------------------------------------------------------------------
+
+18-> truncate:-
+
+truncate kya krta hai wo table ke andar jitna bhi data hoga na
+usse delete krdega table ko nhi krega delete jaise drop tha wo sab krderha tha yenhi krega
+
+truncate table orders;
+# o_id, orderprice, customer
+ye upar dekho sab data delete hogya o_id orderprice wgera ka
+sirf column name bccha
+
+-------------------------------------------------------------------------------------
+19-> update
+manlo 
+# o_id, orderprice, customer
+     2,        1500,      brown
+
+mujhe brown ka orderprice 1500 see 1000 krna hai isliye use hota hai update
+update orders
+set orderprice=1000
+where o_id=2;
+
+ye hogya ab
+# o_id, orderprice, customer
+     2,        1000,      brown
+---------------------------------------------------------------------------------------
+                                    
+
+
+
+IMPORTANT		CONSTRAINTS:-
+				_______________
+
+------------------------------------------------------------------------------------------------
+1-> 
+NOT NULL:-
+
+create table person
+(
+	id int not null,
+    peronname varchar(255),
+    location varchar(255)
+    
+)
+
+insert into person(peronname,location) values("deepak","XYZ");
+maine jab table bnai to id bhi column meeh add ki upar dekho create table meeh but jab table meeh values dane gya to id meeh values hi nhi daal rha tha 
+generally aissa hota hai but yha table create krte time maine keeh diya tha not null agar not null na likhta to aisse kra deta
+insert into person(peronname,location) values("deepak","XYZ");
+by default wo null leleta hai but yha maine upar table create krte time not null bola tha id ko to jab values denge to id ko bhi kuch na kuch dena pdega 
+insert into person(id,peronname,location) values(1,"deepak","XYZ");
+abb chlega
+--------------------------------------------------
+2-> Not null unique:-
+create table person
+(
+	id int not null unique,->mtlb id meeh na null rhe na duplicate 
+    personname varchar(255),
+    location varchar(255)    
+)
+
+iska mtlb ye hai ki jab value denge to ek baar id meeh koi value dediye to firsee same value id ko nhi dekste hai 
+insert into person(id,personname,location) values(1,"deepak","XYZ");
+    ek baar kra liya entry 
+1  deepak XYZ
+
+fir krao insert
+insert into person(id,personname,location) values(1,"deepak","XYZ");
+    abki baar duplicate entry dega
+
+insert into person(id,personname,location) values(2,"deepak","XYZ");
+    2 daaal diya ab fir chlega mtlb duplicate nhi bna skte
+----------------------------------------------------------------------------------------
+3-> check constraints->
+
+create table person
+(
+	id int not null unique,
+    personname varchar(255),
+    location varchar(255),
+    age int,
+    check(age>=18)
+    
+)
+
+maine yha agee meeh check lgaya hai ki age 18 ho ya
+18 ke upar ho tbhi insert hogi value
+insert into person(id,personname,location,age) values(1,"deepak","XYZ",22); 
+isse lelega
+insert into person(id,personname,location,age) values(1,"aman","YZ",14);->nhi lega 14 hai age
+-----------------------------------------------------------------------------------
+
+4-> primary key ,foreign key
+jo unique ho aur null na ho
+table bnai aur order id wala column ko primary key bnadiya
+
+create table orders
+(
+order_id int primary key,
+ordernumber int,
+location varchar(255)
+)
+
+-----ab foreign key bnaunga----------------
+create table persons
+(
+personid int,
+personname varchar(255),
+order_id int, -> //ye upar order meeh primary key bna hai data type 			//same hona chahiye isko foreign key bna rha hu 											//niche 
+foreign key(order_id) references orders(order_id)
+)
+
+
+
+---------------------------------------------------common columns in both the table hone chahiye ek ko primary key bnao ek ko foreign key
+foreign key whi hogi jo dusri wali table meeh primary key bnni hai
+orders wali table meeh primary key order_id hai to persons wali table meeh foreign key bhi order id bnega aur data type bhi same hona chahiye jo primary key wale ka hai
+
+--------------------order aur persons hai inme data dalte hai abb
+github par pdho acche see  SQL wala primary aur foreign key
+-------------------------------------------------------------------------------------------
+
+5->  JOIN OPERATION:-
+
+EK table hai dusra table hai indono ko apas meeh jodna isse kehte hai join opeartion combine krna
+inner join/join-> 
+return rows that have only matching values in both the tables
+
